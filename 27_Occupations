@@ -1,0 +1,26 @@
+select 
+    doctor,
+    professor,
+    singer,
+    actor 
+from
+    (select * from
+        (select
+            name,
+            occupation,
+            ROW_NUMBER() over(
+                partition by occupation order by name                
+            ) row_num
+        from occupations
+        order by name
+        )
+        pivot (
+            min(name) for occupation in('Doctor' doctor, 'Professor' professor, 'Singer' singer, 'Actor' actor)
+        )
+        order by row_num
+    ) ;
+
+/*
+for better understanding of ROW_NUMBER() func refer - https://www.oracletutorial.com/oracle-analytic-functions/oracle-row_number/
+
+*/
