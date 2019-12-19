@@ -1,0 +1,6 @@
+select distinct
+    city
+from 
+    station
+where 
+    city not like 'A%a' and city not like 'A%e' and city not like 'A%i' and city not like 'A%o' and city not like 'A%u' and city not like 'E%a' and city not like 'E%e' and city not like 'E%i' and city not like 'E%o' and city not like 'E%u' and city not like 'I%a' and city not like 'I%e' and city not like 'I%i' and city not like 'I%o' and city not like 'I%u' and city not like 'O%a' and city not like 'O%e' and city not like 'O%i' and city not like 'O%o' and city not like 'O%u' and city not like 'U%a' and city not like 'U%e' and city not like 'U%i' and city not like 'U%o' and city not like 'U%u' ;
