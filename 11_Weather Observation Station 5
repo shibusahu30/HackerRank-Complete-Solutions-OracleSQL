@@ -1,0 +1,22 @@
+select 
+    city, 
+    length(city) 
+from
+    (Select * from 
+        Station 
+    Order By 
+        length(City), 
+        City asc)
+where 
+    rownum = 1;
+select 
+    city, 
+    length(city) 
+from
+    (Select * from 
+        Station 
+    Order By 
+        length(City) desc, 
+        City asc)
+where 
+    rownum = 1;
