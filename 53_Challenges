@@ -1,1 +1,26 @@
-
+select
+    hacker_id,
+    name,
+    counter
+from(
+    select
+        h.hacker_id,
+        h.name,
+        counter,
+        max(counter) over (order by 1) max_challenge,
+        count(counter) over (partition by counter) no_challenges
+    from
+        hackers h join (
+                          select 
+                              distinct hacker_id, 
+                              count(challenge_id) over(partition by hacker_id) counter
+                          from 
+                              challenges
+        ) c on h.hacker_id = c.hacker_id
+)
+where
+    no_challenges = 1 or
+    counter = max_challenge
+order by
+    counter desc,
+    hacker_id ;
