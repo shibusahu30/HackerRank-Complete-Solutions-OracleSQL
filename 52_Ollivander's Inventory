@@ -1,0 +1,14 @@
+select  
+    w.id,
+    p.age,
+    w.coins_needed,
+    w.power
+from
+    wands w inner join wands_property p using(code) 
+where 
+    p.is_evil = 0 and w.coins_needed = (select min(ww.coins_needed) from 
+                                       wands ww inner join wands_property pp using(code)
+                                       where w.power = ww.power and p.age = pp.age)
+order by 
+    w.power desc,
+    p.age desc ;
