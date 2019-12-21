@@ -1,1 +1,30 @@
-
+select
+    hacker_id,
+    name,
+    total_score
+from
+    (select
+        hacker_id,
+        name,
+        sum(score) total_score 
+    from
+        (select
+            h.hacker_id,
+            h.name,
+            s.challenge_id,
+            max(s.score) score
+        from
+            hackers h join submissions s on h.hacker_id = s.hacker_id
+        group by 
+            h.hacker_id,
+            s.challenge_id,
+            h.name
+        ) 
+    group by
+        hacker_id,
+        name
+    order by
+        total_score desc,
+        hacker_id) 
+where 
+    total_score > 0 ;
