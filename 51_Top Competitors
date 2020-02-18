@@ -15,3 +15,6 @@ having
 order by 
     count(*) desc,
     h.hacker_id ;
+/*
+PROBLEM: https://www.hackerrank.com/challenges/full-score/problem
+*/
