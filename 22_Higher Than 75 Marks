@@ -5,5 +5,5 @@ from
 where
     marks > 75
 order by
-    substr(name, -3),
+    substr(name, -3), // last three characters considered
     id ;
